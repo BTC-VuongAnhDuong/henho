@@ -3,6 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="{{ asset('icon.png') }}">
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -10,17 +11,20 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Scripts -->
-    <script src="{{ asset('public/js/app.js') }}" defer></script>
+    <script src="{{ asset('js/app.js') }}" defer></script>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
     <!-- Styles -->
-    <link href="{{ asset('public/css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <script>
-		var url = '{{ asset('') }}';
+        var url = '{{ asset('') }}';
+        var gender = <?= json_encode(\App\Glossary\UserGender::getAll())?>;
+        var single_state = <?= json_encode(\App\Glossary\UserSingleState::getAll())?>;
 	</script>
+    
 </head>
 <body>
     <div id="app">
@@ -61,7 +65,7 @@
                                     @if(Auth::user()->isAdmin())
                                     <a class="dropdown-item" href="{{ route('admin') }}">Admin</a>
                                     @endif
-                                    <a class="dropdown-item" href="{{ route('home') }}">Cập nhật thông tin</a>
+                                    <a class="dropdown-item" href="{{ URL::to('user') }}">Cập nhật thông tin</a>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">

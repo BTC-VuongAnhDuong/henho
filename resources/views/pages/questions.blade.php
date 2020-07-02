@@ -1,5 +1,5 @@
 @extends('layouts.app')
 
 @section('content')
-<register-match></register-match>
+<answer-question></answer-question>
 @endsection

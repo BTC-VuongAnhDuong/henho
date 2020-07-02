@@ -1,5 +1,5 @@
 @guest
 @include('pages.home')
 @else
-@include('home')
+@include('spa')
 @endguest

@@ -20,13 +20,12 @@ Route::get('/', function () {
 Auth::routes();
 Route::any('/admin', 'Admin\Controller@execute')->middleware('is_admin')->name('admin');
 
-Route::get('/home', 'HomeController@index')->name('home');
-
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/questions', 'HomeController@questions')->name('questions');
+// Route::get('/home', 'HomeController@index')->name('home');
+// Route::get('/questions', 'HomeController@questions')->name('questions');
 Route::get('/api/questions', 'Api\QuestionController@index');
 Route::post('/api/question/answer', 'Api\QuestionController@answer');
-Route::post('/api/user/update_info', 'Api\User@update_info');
-// Route::get('/{any}', 'HomeController@spa')->where('any', '.*');
+Route::get('/api/user', 'Api\UserController@getUserInfo');
+Route::post('/api/user/update', 'Api\UserController@update');
+Route::any('{any}', 'HomeController@spa')->where('any', '.*');

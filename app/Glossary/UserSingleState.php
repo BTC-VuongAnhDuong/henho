@@ -2,10 +2,10 @@
 
 namespace App\Glossary;
 
-class UserGender{
-    const MALE = ['display'=>'Nam', 'value'=>'1'];
-    const FEMALE = ['display'=>'Nữ', 'value'=>'2'];
-    // const THIRD = ['display'=>'Giới tính thứ 3', 'value'=>'3'];
+class UserSingleState{
+    const SINGLE = ['display'=>'Độc thân', 'value'=>'1'];
+    const DIVORCEDNOCHILD = ['display'=>'Đã ly dị chưa có con', 'value'=>'2'];
+    const DIVORCEDWCHILD = ['display'=>'Đã ly dị và có con', 'value'=>'3'];
 	
     public static function getAll() {
         $oClass = new \ReflectionClass(__CLASS__);

@@ -8,8 +8,10 @@ require('./bootstrap');
 
 window.Vue = require('vue');
 import BootstrapVue from 'bootstrap-vue' //Importing
+import VueRouter from 'vue-router'
 
 Vue.use(BootstrapVue)
+Vue.use(VueRouter)
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
@@ -21,14 +23,42 @@ Vue.use(BootstrapVue)
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
-Vue.component('register-match', require('./components/RegisterMatch.vue').default);
-
+// Vue.component('answer-question', require('./components/AnswerQuestion.vue').default);
+import AnswerQuestion from './components/AnswerQuestion.vue'
+import UserInfo from './components/UserInfo.vue'
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
+// const app = new Vue({
+//     el: '#app',
+// });
+
+const router = new VueRouter({
+    mode: 'history',
+    routes: [
+        {
+            path: '/',
+            name: 'home',
+            component: UserInfo
+        },
+        {
+            path: '/user',
+            name: 'user',
+            component: UserInfo
+        },
+        {
+            path: '/question',
+            name: 'question',
+            component: AnswerQuestion,
+        }
+    ],
+});
+
 const app = new Vue({
     el: '#app',
+    components: { UserInfo },
+    router,
 });
