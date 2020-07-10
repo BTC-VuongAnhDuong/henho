@@ -5,7 +5,7 @@
     <div class="row">
         <div class="col-sm-12">
             <div class="card-box">
-                <h4 class="m-t-0">{{$label['title']}}</h4>
+                <h4 class="m-t-0">@lang('Users')</h4>
 
                 <hr />
 
@@ -14,23 +14,14 @@
                 <form name="filterUser" action="{{url('admin?view=User')}}" method="GET">
 
                     <div class="row">
-                        @if($currentUser->group->key !== config('auth.usergroup.agency'))
 
                         <div class="col-sm-4">
                             <div class="form-group">
                                 <label for="user_type">Loại User</label>
-                                <select class="form-control" id="user_type" name="filter[group_id]">
-                                    <option value="">@lang('admin.USER_TYPE')</option>
-                                    @foreach($group AS $value)
-                                        <option value="{{$value->id}}"
-                                        @if(isset($filter['group_id']) && $value->id == $filter['group_id']) selected @endif
-                                        >{{$value->name}}</option>
-                                    @endforeach
-                                </select>
+                                <?= HtmlHelper::select(\App\Glossary\UserType::getAll(),'filter[group_id]','class="form-control"','value','display',isset($filter['group_id']) ? $filter['group_id'] : '','','---')?>
                             </div>
                         </div>
 
-                        @endif
 
                         <div class="col-sm-4">
                             <div class="form-group">
@@ -61,9 +52,9 @@
                     <div class="row">
                         <div class="col-sm-4">
                             <div class="form-group">
-                                <label for="user_type">@lang('admin.GENDER')</label>
+                                <label for="user_type">@lang('Gender')</label>
                                 <select class="form-control" id="gender" name="filter[gender]">
-                                    <option value="">@lang('admin.GENDER')</option>
+                                    <option value="">@lang('Gender')</option>
                                     <option value="M" @if(isset($filter['gender']) && $filter['gender'] == 'M') selected @endif>Nam</option>
                                     <option value="F" @if(isset($filter['gender']) && $filter['gender'] == 'F') selected @endif>Nữ</option>
                                 </select>
@@ -144,10 +135,11 @@
                                 </td>
 
                                 <td>
-                                    <b><a href="" class="text-dark"><b>{{$item->mobile}}</b></a> </b>
+                                    <b><a href="" class="text-dark"><b>{{$item->phone}}</b></a> </b>
                                 </td>
 
-                                <td>{{$item->address}}</td>
+                                <td><?php $tp = array_filter($province,function($p) use ($item){return $item->provincial==$p['matp'];});
+                                echo $tp ? reset($tp)['name'] : ''?></td>
 
                                 <td>
                                     <a href="{{url('admin?controller=User&task=block&id='.$item->id)}}">

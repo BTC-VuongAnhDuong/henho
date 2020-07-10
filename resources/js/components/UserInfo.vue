@@ -51,6 +51,20 @@
                                     </div>
                                 </div>
                             </div>
+                            
+                            <div class="form-group row">
+                                <label for="height" class="col-md-4 col-form-label text-md-right">Chiều cao(cm)</label>
+                                <div class="col-md-6">
+                                    <input id="height" type="number" class="form-control " name="height" v-model="user.height" value="" required autocomplete="height">
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label for="weight" class="col-md-4 col-form-label text-md-right">Cân nặng(kg)</label>
+                                <div class="col-md-6">
+                                    <input id="weight" type="number" class="form-control " name="weight" v-model="user.weight" value="" required autocomplete="weight">
+                                </div>
+                            </div>
 
 
                             <div class="form-group row mb-0">

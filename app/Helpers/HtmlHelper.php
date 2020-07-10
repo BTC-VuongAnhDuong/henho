@@ -2,7 +2,7 @@
 
 namespace App\Helpers;
 
-class Html
+class HtmlHelper
 {
 	/**
 	 * Return a select options html
@@ -15,7 +15,6 @@ class Html
 	 * @param unknown $id id of select list box
 	 */
 	static function select($options, $name, $attr, $key, $label, $selected = null, $id=null,$blank_select = ''){
-		
 		if($blank_select){
 			$blank = [$key=>''];
 			if(is_array($label)){						

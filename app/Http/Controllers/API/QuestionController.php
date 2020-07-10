@@ -44,6 +44,13 @@ class QuestionController extends Controller
                 'answer_id' => $answer_id,
             ];
             UserAnswer::create($data);
+
+            if(request()->input('last_question')){
+                if($user->state == \App\Glossary\UserState::UNAVAILABLE['value']){
+                    $user->state = \App\Glossary\UserState::PENDING['value'];
+                    $user->save();
+                }
+            }
             $result['status'] = 1;
             DB::commit();
         }catch (\Exception $e) {

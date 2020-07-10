@@ -28,4 +28,5 @@ Route::get('/api/questions', 'Api\QuestionController@index');
 Route::post('/api/question/answer', 'Api\QuestionController@answer');
 Route::get('/api/user', 'Api\UserController@getUserInfo');
 Route::post('/api/user/update', 'Api\UserController@update');
+
 Route::any('{any}', 'HomeController@spa')->where('any', '.*');

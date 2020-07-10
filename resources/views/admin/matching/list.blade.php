@@ -1,7 +1,6 @@
 @extends('layouts.admin')
 @section('content')
 <script>
-    var questionType = <?= json_encode($questionType)?>;
 </script>
 <h4 class="m-t-0">Câu hỏi</h4>
 
@@ -111,6 +110,6 @@
 </div>
 
 
-<script src="{{ asset('js/admin/question.js') }}"></script>
+<script src="{{ asset('js/admin/matching.js') }}"></script>
 
 @endsection

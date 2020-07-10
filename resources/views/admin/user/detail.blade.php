@@ -39,11 +39,11 @@
 					</div>
 					<div class="form-group">
 						<label>Mobile</label>
-						<input type="text" class="form-control" name="data[mobile]" value="{{$item->mobile}}" required />
+						<input type="text" class="form-control" name="data[phone]" value="{{$item->mobile}}" required />
 					</div>
 					<div class="form-group">
-						<label>Group ID</label>
-                        <?php BookproHtml::select_user_groups('data[group_id]', $item->group_id) ?>
+						<label>@lang('Group')</label>
+                        <?= HtmlHelper::select(\App\Glossary\UserType::getAll(),'data[type]','class="form-control"','value','display',$item->type,'','---')?>
 					</div>
 					<div class="form-group">
 						<label>Enabled or Disabled</label>
@@ -52,14 +52,14 @@
 							<option value="0">Disabled</option>
 						</select>
 					</div>
-					<div class="form-group">
+					<!-- <div class="form-group">
 						<label>Longitude</label>
 						<input type="text" class="form-control" name="data[longitude]" value="{{$item->longitude}}"/>
 					</div>
 					<div class="form-group">
 						<label>Latitude</label>
 						<input type="text" class="form-control" name="data[latitude]" value="{{$item->latitude}}"/>
-					</div>
+					</div> -->
 					<div class="form-group">
 						<label>Chiều cao</label>
 						<input type="number" step="0.01" value="{{$item->height}}" class="form-control" name="data[height]" />
@@ -68,122 +68,35 @@
 						<label>Cân nặng</label>
 						<input type="number" step="0.01" value="{{$item->weight}}" class="form-control" name="data[weight]" />
 					</div>
-					<div class="form-group">
-						<label>Học vấn</label>
-						<select name="data[education]" class="form-control">
-
-							@foreach(App\Education::all() AS $value)
-
-								<option
-									value="{{$value->id}}"
-									@if($value->id == $item->education)
-										selected
-									@endif
-								>{{$value->name}}</option>
-
-							@endforeach
-
-						</select>
-					</div>
 
 					<div class="form-group">
 						<label>Tỉnh</label>
-
-						<select name="data[province_id]" class="form-control">
-							<option value="">Chọn tỉnh</option>
-							@foreach($province AS $value)
-								<option
-										@if($value->matp == $item->province_id)
-												selected
-										@endif
-										value="{{$value->matp}}">{{$value->name}}</option>
-							@endforeach
-						</select>
-
+						<?= HtmlHelper::select($province,'data[provincial]','class="form-control"','matp','name',$item->provincial,'','---')?>
 					</div>
 				</div>
 				<div class="col-sm-6">
-					<div class="form-group">
-						<label>Credit</label>
-						<input type="text" class="form-control" name="data[credit]" value="{{$item->credit}}"/>
-					</div>
-					<div class="form-group">
-						<label>Provider</label>
-						<input type="text" class="form-control" name="data[provider]" value="{{$item->provider}}"/>
-					</div>
-					<div class="form-group">
-						<label>Provider ID</label>
-						<input type="text" class="form-control" name="data[provider_id]" value="{{$item->provider_id}}"/>
-					</div>
-					<div class="form-group">
-						<label>Admin Role</label>
-						<select name="data[is_admin]" class="form-control" >  
-							<option value="0" @if($item->is_admin == 0)selected @endif>No</option>
-							<option value="1" @if($item->is_admin == 1)selected @endif>Yes</option>
-						</select>
-					</div>
 
 					<div class="form-group">
 						<label>Gender</label>
-						<select name="data[gender]" class="form-control">  
-							<option value='M' @if($item->gender == 'M') selected @endif>Male</option>
-							<option value='F' @if($item->gender == 'F') selected @endif>Female</option>
-						</select>
+						<?= HtmlHelper::select(\App\Glossary\UserGender::getAll(),'data[provincial]','class="form-control"','value','display',$item->gender)?>
 					</div>
 
-					<div class="form-group">
+					<!-- <div class="form-group">
 						<label>Verify</label>
 						<select name="data[is_verify]" class="form-control">
 							<option value="1" @if($item->is_verify == 1)selected @endif;>Yes</option>
 							<option value="0" @if($item->is_verify == 0)selected @endif;>No</option>
 						</select>
-					</div>
-
-					<div class="form-group">
-						<label>Nghề nghiệp</label>
-						{{\App\Job::select_job('data[job]', $item->job, null, null )}}
-					</div>
-
-					<div class="form-group">
-						<label>Sở thích</label>
-
-						@foreach(\App\Hobby::all() AS $value)
-
-							<div class="checkbox checkbox-info">
-								<input
-										@foreach(\App\Hobby::get_hobby_by_user($item->id) AS $val)
-											@if($val->hobby_id == $value->id)
-												checked
-											@endif
-										@endforeach
-
-										id="checkbox{{$value->id}}"
-										value="{{$value->id}}"
-										type="checkbox"
-										name="favourite[]">
-								<label for="checkbox{{$value->id}}">{{$value->name}}</label>
-							</div>
-
-						@endforeach
-
-					</div>
-
-					<div class="form-group">
-						<label>Upload image in status or not</label>
-						<select name="" class="form-control">  
-							<option>Yes</option>
-							<option>No</option>
-						</select>
-					</div>
-					<div class="form-group">
+					</div> -->
+					<!-- <div class="form-group">
 						<label>Avatar</label>
 						<input type="file" class="form-control" name="data[avatar]" />
-					</div>
+					</div> -->
 				</div>
 				<div class="col-sm-12">
-					<button type="submit" class="btn btn-primary">@lang('admin.SUBMIT')</button>
+					<button type="submit" class="btn btn-primary">@lang('Save')</button>
 					<a href="{{url('admin?view=User')}}">
-						<button type="button" class="btn btn-primary">@lang('admin.BACK')</button>
+						<button type="button" class="btn btn-primary">@lang('Back')</button>
 					</a>
 				</div>
 			</form>

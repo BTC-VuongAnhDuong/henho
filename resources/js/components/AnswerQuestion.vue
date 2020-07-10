@@ -60,7 +60,8 @@
                     url: url+'api/question/answer',
                     data: {
                         question_id: self.currentItem.id,
-                        answer_id: self.currentItem.answer
+                        answer_id: self.currentItem.answer,
+                        last_question: self.index == (self.items.length - 1)
                     },
                     responseType: 'json'
                 })
@@ -72,7 +73,7 @@
                             return;
                         }
                         self.index++;
-                        console.log(self);
+                        // console.log(self);
                         self.currentItem = self.items[self.index];
                     }else{
                         alert(response.data.message);

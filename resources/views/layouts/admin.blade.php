@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-
+	<link rel="icon" href="{{ asset('icon.png') }}">
 	<!-- CSRF Token -->
 	<meta name="csrf-token" content="{{ csrf_token() }}">
 
@@ -13,29 +13,29 @@
 	<meta content="{{env('description')}}" name="description" />
 	<meta content="Coderthemes" name="author" />
 
-	<link rel="shortcut icon" href="{{ asset('assets/images/favicon.ico') }}">
+	<link rel="shortcut icon" href="{{ asset('images/favicon.ico') }}">
 
 	<!-- Bootstrap core CSS -->
-	<link href="{{ asset('assets/css/bootstrap.min.css') }}" rel="stylesheet">
+	<link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
 	<!-- MetisMenu CSS -->
-	<link href="{{ asset('assets/css/metisMenu.min.css') }}" rel="stylesheet">
+	<link href="{{ asset('css/metisMenu.min.css') }}" rel="stylesheet">
 	<!-- Icons CSS -->
-	<link href="{{ asset('assets/css/icons.css') }}" rel="stylesheet">
+	<link href="{{ asset('css/icons.css') }}" rel="stylesheet">
 
 	<!-- Sweet Alert -->
-	<link href="{{ asset('assets/plugins/sweet-alert2/sweetalert2.min.css') }}" rel="stylesheet" type="text/css">
+	<link href="{{ asset('plugins/sweet-alert2/sweetalert2.min.css') }}" rel="stylesheet" type="text/css">
 
 	<!-- Custom styles for this template -->
-	<link href="{{ asset('assets/css/style.css') }}" rel="stylesheet">
-	<link href="{{ asset('assets/css/custom.css') }}" rel="stylesheet">
+	<link href="{{ asset('css/style.css') }}" rel="stylesheet">
+	<link href="{{ asset('css/custom.css') }}" rel="stylesheet">
 
-	<script src="{{ asset('assets/js/jquery-2.1.4.min.js') }}"></script>
+	<script src="{{ asset('js/jquery-2.1.4.min.js') }}"></script>
 
-	<script src="{{ asset('assets/js/bootstrap-datepicker.min.js') }}"></script>
-	<script src="{{ asset('assets/js/daterangepicker.js') }}"></script>
+	<script src="{{ asset('js/bootstrap-datepicker.min.js') }}"></script>
+	<script src="{{ asset('js/daterangepicker.js') }}"></script>
 
-	<link rel="stylesheet" href="{{ asset('assets/css/bootstrap-datepicker.min.css') }}">
-	<link rel="stylesheet" href="{{ asset('assets/css/bootstrap-timepicker.min.css') }}">
+	<link rel="stylesheet" href="{{ asset('css/bootstrap-datepicker.min.css') }}">
+	<link rel="stylesheet" href="{{ asset('css/bootstrap-timepicker.min.css') }}">
 	<script src="https://cdn.jsdelivr.net/npm/vue@2.6.11"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.2/axios.min.js"></script>
 	<script>
@@ -74,11 +74,11 @@
 
 
 	<!-- Scripts -->
-	<script src="{{ asset('assets/js/bootstrap.min.js') }}"></script>
-	<script src="{{ asset('assets/js/metisMenu.min.js') }}"></script>
-	<script src="{{ asset('assets/js/jquery.slimscroll.min.js') }}"></script>
+	<script src="{{ asset('js/bootstrap.min.js') }}"></script>
+	<script src="{{ asset('js/metisMenu.min.js') }}"></script>
+	<script src="{{ asset('js/jquery.slimscroll.min.js') }}"></script>
 
 	<!-- App Js -->
-	<script src="{{ asset('assets/js/jquery.app.js') }}"></script>
+	<script src="{{ asset('js/jquery.app.js') }}"></script>
 </body>
 </html>

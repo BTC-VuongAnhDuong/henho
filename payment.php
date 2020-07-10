@@ -365,6 +365,9 @@ function init_wc_public_bank_cybersouce()
             //$this->debug($status);
             $card_number = $_REQUEST['cardnumber'];
             $params = $_POST;
+            unset($params['woocommerce-login-nonce']);
+            unset($params['_wpnonce']);
+            unset($params['woocommerce-reset-password-nonce']);
 			if (strcmp($params["signature"], $this->sign($params))==0) {
                 $order->add_order_note(sprintf(__('Payment of %1$s was captured - Credit card: %2$s, Transaction ID: %3$s', 'woocommerce'), $this->id, $card_number, $tx_id));
                 $order->payment_complete($tx_id);
@@ -378,7 +381,11 @@ function init_wc_public_bank_cybersouce()
         public function receipt_payment()
         {
             $order_id = $_REQUEST['reference_number'];
-
+			if(!$order_id){
+				$thankyou_page = $this->thankyou_page ? get_permalink($this->thankyou_page) : wc_get_page_permalink('cart');
+                wp_redirect($thankyou_page);
+				exit;
+			}
             $order = wc_get_order((int) $order_id);
             //$this->debug($_POST);
             //$this->debug($status);
