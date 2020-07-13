@@ -29,7 +29,7 @@ use App\Glossary\UserType;
                 <li><a href="{{url('/admin?view=User')}}"><i class="mdi mdi-account-multiple-plus"></i>Người dùng</a></li>
             @endcan
 
-            <li><a href="{{url('/admin?view=UserMatching')}}"><i class="mdi mdi-account"></i>Matching</a></li>
+            <li><a href="{{url('/admin?view=Matching')}}"><i class="mdi mdi-account"></i>Matching</a></li>
             <li><a href="{{url('/admin?view=Question')}}"><i class="ti-book"></i>Câu hỏi</a></li>
 
             @can([config('auth.action.CONFIG_GENERAL')])

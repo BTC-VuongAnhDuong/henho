@@ -48,7 +48,9 @@
                         <td>@{{ item.birthday }}</td>
                         <td>@{{ item.phone }}</td>
                         <td>
-                            <div class="row" v-for="match in item.match">@{{ match.name }} @{{ showGender(match.gender) }} @{{ match.birthday }}</div>
+                            <div class="row mb-1 " v-for="match in item.match">@{{ match.name }} @{{ showGender(match.gender) }} @{{ match.birthday }} 
+                                <button type="button" class="btn btn-primary pull-right">Match</button>
+                            </div>
                         </td>
                     </tr>
                     </tbody>
@@ -59,7 +61,9 @@
         </div>
     </div>
 </div>
-
+<style>
+.mb-1{margin-top:1px;}
+</style>
 
 <script>
 var gender = <?= json_encode(\App\Glossary\UserGender::getAll())?>;

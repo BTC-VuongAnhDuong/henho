@@ -5,8 +5,8 @@
     <div class="topbar-left">
         <div class="">
             <a href="{{url('/admin')}}" class="logo">
-                <img src="assets/images/logo.png" alt="logo" class="logo-lg"/>
-                <img src="assets/images/logo_sm.png" alt="logo" class="logo-sm hidden"/>
+                <img src="images/logo.png" alt="logo" class="logo-lg"/>
+                <img src="images/logo_sm.png" alt="logo" class="logo-sm hidden"/>
             </a>
         </div>
     </div>
@@ -152,9 +152,10 @@
                     </li>
 
                     <li class="dropdown top-menu-item-xs">
-                        <a href="" class="dropdown-toggle menu-right-item profile" data-toggle="dropdown"
-                           aria-expanded="true"><img src="assets/images/users/avatar-1.jpg" alt="user-img"
-                                                     class="img-circle"> </a>
+                        <a href="/admin?view=User" class="dropdown-toggle menu-right-item profile" data-toggle="dropdown"
+                           aria-expanded="true">
+                            <i class="fa fa-user"></i>   
+                         </a>
                         <ul class="dropdown-menu">
                             <li>
                                 <a href="{{URL::to('/admin?view=Profile')}}"><i class="ti-user m-r-10"></i> Profile</a>
@@ -173,3 +174,8 @@
     </div> <!-- end navbar -->
 </div>
 <!-- Top Bar End -->
+<style>
+.logo{
+    background-color:red;
+}
+</style>
