@@ -11,7 +11,7 @@ use Illuminate\Support\Arr;
 class Matching extends Model
 {
     protected $table = 'matching';
-    protected $primaryKey = ['user_id','match_user_id'];
+    protected $primaryKey = 'id';
 
     public static function getQueryData($filterData){
         $query = Matching::select('user_id');
@@ -29,16 +29,29 @@ class Matching extends Model
         $users = $query->offset(Arr::get($filterData,'page_offset',0))
         ->limit(Arr::get($filterData,'page_limit',5))
         ->get()->toArray();
-        dump($users);die;
-        $userIds = array_map(function($e){return $e->user_id;},$users);
+        // dump($users);die;
+        $userIds = array_map(function($e){return $e['user_id'];},$users);
         //get matched user
-        // $matched = 
+        $matching = Matching::whereIn('user_id',$userIds)->select('user_id','match_user_id')->get()->toArray();
+        $matchIds = Arr::flatten($matching);
         //fetch user info to user
-        $userIds = array_flatten($users);
-        $userIds = array_unique($userIds);
-        $userInfo = User::whereIn('id',$userIds)->get()->toArray();
+        // $userIds = array_merge($matchIds,$userIds);
+        $userIds = array_unique($matchIds);
+        $userInfo = User::whereIn('id',$userIds)->get()->keyBy('id')->toArray();
+        //fetch match user
+        $result = [];
+        foreach($userIds as $user_id){
+            $user = $userInfo[$user_id];
+            $user['match'] = [];
+            $thisUserMatch = array_filter($matching,function($e) use ($user_id) {return $e['user_id'] == $user_id;});
+            $thisUserMatchIds = array_map(function($e){return $e['match_user_id'];},$thisUserMatch);
+            foreach($thisUserMatchIds as $id){
+                $user['match'][] = $userInfo[$id];
+            }
+            $result[] = $user;
 
-        return $users;
+        }
+        return $result;
     }
 
     public static function getTotal($filterData){

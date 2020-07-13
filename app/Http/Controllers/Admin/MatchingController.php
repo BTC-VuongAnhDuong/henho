@@ -32,6 +32,15 @@ class MatchingController extends Controller
         return $items;
     }
 
+    public function getTotal(){
+        $filter = isset($_GET['filter'])?$_GET['filter']:array();
+
+        $data = array();
+        $data['filter'] = $filter;
+        $total = Matching::getTotal($data['filter']);
+        return $total;
+    }
+
     public function refresh(){
         return ['status'=>1,'data'=>(new \App\Object\Matching())->getMatch()];
     }

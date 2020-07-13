@@ -14,10 +14,11 @@ class AddMatching extends Migration
     public function up()
     {
         Schema::create('matching', function (Blueprint $table) {
-            $table->integer('user_id')->unsigned();
+            $table->id();
+            $table->integer('user_id');//->unsigned();
             $table->integer('match_user_id');
             $table->string('notes',500)->default('');
-            $table->primary(array('user_id','match_user_id'));
+            // $table->primary(array('user_id','match_user_id'));
         });
     }
 
